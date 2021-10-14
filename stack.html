@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html> <head> 
+    <title>Stack page</title>
+    <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<body>
+    <h4>Himaja builds a stack</h4>
+    <div style="text-align: center;">
+    <input type="text" id="input">
+    <br>
+    <br>
+    <p> Press the button to create an new element of type div and then add it to the container.
+    </p>
+    <br>
+    <br>
+        <button id="push" onclick="makeNewDiv()" style="background-color:lightgreen">Push value</button>
+        <button id="pop" onclick="popItem()" style="background-color:lightgreen">Pop</button>
+        <button id="zap" onclick="zap()" style="background-color:lightgreen">Zap value</button>
+        <br>
+    <br>
+		<div class="flex-container" id="target" >
+		  <div  class="stack">row item 1</div>   
+		  <div  class="stack">row item 2</div>  
+		  <div  class="stack">row item 3</div>  
+		</div>
+	
+	
+    </div>
+		
+	
+	
+</body>
+<script>
+	function makeNewDiv(){
+		/* make the div and its text */
+		let element = document.createElement("div")
+        input= document.getElementById("input").value
+		element.innerHTML = input
+        element.className= "stack"
+        element.style.color = "orange"
+		/* add it to the container */
+		document.getElementById('target').appendChild(element)
+		
+	}
+    function popItem() {
+        items = document.getElementsByClassName("stack")
+        input = document.getElementById("input").value
+        length = items.length
+        if (length > 0) {
+            items[length - 1].remove()
+        }
+    }
+    function zap() {
+        items = document.getElementsByClassName("stack")
+        input = document.getElementById("input").value
+            for (let i = 0; i < items.length; i++) {
+                element = items[i].innerHTML;
+                if (element == input) {
+                    console.log(items[i])
+                    items[i].remove();
+                    i--;
+                }
+
+            }
+        
+    }
+</script>
+</html>	
